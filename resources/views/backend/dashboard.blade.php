@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.svg' ) }}" type="image/x-icon" />
-    <title>Blank Page</title>
+    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.svg')}}" type="image/x-icon" />
+    <title>Blank Page | PlainAdmin Demo</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap.min.css') }}" />
@@ -25,7 +25,7 @@
     <aside class="sidebar-nav-wrapper">
       <div class="navbar-logo">
         <a href="index.html">
-          <img src="{{ asset('backend/assets/images/logo/logo.svg ') }}" alt="logo" />
+          <img src="{{ asset('backend/assets/images/logo/logo.svg')}}" alt="logo" />
         </a>
       </div>
       <nav class="sidebar-nav">
@@ -78,10 +78,10 @@
             </a>
             <ul id="ddmenu_2" class="collapse show dropdown-nav">
               <li>
-                <a href="settings.html"> Settings </a>
+                <a href="settings.html"> Categories </a>
               </li>
               <li>
-                <a href="blank-page.html" class="active"> Blank Page </a>
+                <a href="blank-page.html" class="active"> Sub Categories </a>
               </li>
             </ul>
           </li>
@@ -262,7 +262,7 @@
       </nav>
       <div class="promo-box">
         <div class="promo-icon">
-          <img class="mx-auto" src="./{{ asset('backend/assets/images/logo/logo-icon-big.svg') }}" alt="Logo">
+          <img class="mx-auto" src="./{{ asset('backend/assets/images/logo/logo-icon-big.svg')}}" alt="Logo">
         </div>
         <h3>Upgrade to PRO</h3>
         <p>Improve your development process and start doing more with PlainAdmin PRO!</p>
@@ -416,7 +416,7 @@
                     <div class="profile-info">
                       <div class="info">
                         <div class="image">
-                          <img src="{{ asset('backend/assets/images/profile/profile-image.png ') }}" alt="" /> alt="" />
+                          <img src="{{ asset('backend/assets/images/profile/profile-image.png ') }}" alt="" />
                         </div>
                         <div>
                           <h6 class="fw-500">Adam Joe</h6>
@@ -429,7 +429,7 @@
                     <li>
                       <div class="author-info flex items-center !p-1">
                         <div class="image">
-                          <img src="{{ asset('backend/assets/images/profile/profile-image.png ') }}" alt="" /> alt="image">
+                          <img src="{{ asset('backend/assets/images/profile/profile-image.png ') }}" alt="" />
                         </div>
                         <div class="content">
                           <h4 class="text-sm">Adam Joe</h4>
@@ -536,14 +536,14 @@
     <!-- ======== main-wrapper end =========== -->
 
     <!-- ========= All Javascript files linkup ======== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Chart.min.js"></script>
-    <script src="assets/js/dynamic-pie-chart.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/fullcalendar.js"></script>
-    <script src="assets/js/jvectormap.min.js"></script>
-    <script src="assets/js/world-merc.js"></script>
-    <script src="assets/js/polyfill.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('backend/assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/Chart.min.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/dynamic-pie-chart.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/moment.min.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/fullcalendar.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/jvectormap.min.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/world-merc.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/polyfill.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/main.js')}}"></script>
   </body>
 </html>
