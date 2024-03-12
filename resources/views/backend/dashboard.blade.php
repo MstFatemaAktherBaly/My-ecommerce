@@ -78,10 +78,10 @@
             </a>
             <ul id="ddmenu_2" class="collapse show dropdown-nav">
               <li>
-                <a href="settings.html"> Categories </a>
+                <a href="{{route('category')}}"> Categories </a>
               </li>
               <li>
-                <a href="blank-page.html" class="active"> Sub Categories </a>
+                <a href="#" class="active"> Sub Categories </a>
               </li>
             </ul>
           </li>
@@ -469,6 +469,8 @@
       </header>
       <!-- ========== header end ========== -->
 
+      @yield('contents')
+
       <!-- ========== section start ========== -->
       <section class="section">
         <div class="container-fluid">
@@ -477,7 +479,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Title</h2>
+                  {{-- <h2>Title</h2> --}}
                 </div>
               </div>
               <!-- end col -->
