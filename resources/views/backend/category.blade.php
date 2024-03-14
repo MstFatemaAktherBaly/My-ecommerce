@@ -17,6 +17,11 @@
                      @csrf
                      <label for="category">Category Name</label>
                      <input value="" name="category" id="category" placeholder="Add Category" type="text" class="form-control mt-2">
+
+                     <select name="category_id" id="category_id" class="form-control my-3">>
+                        <option value="">Select & Parent Category</option>
+                     </select>
+
                      <button type="submit" class="btn btn-primary mt-2">Submit</button>
 
                     </form>
@@ -36,6 +41,9 @@
                      @method('put')
                      <label for="category">Category Name</label>
                      <input value="{{$findCategory->categoryName}}" name="category" id="category" placeholder="Edit Category" type="text" class="form-control mt-2">
+                     <select name="category_id" id="category_id" class="form-control my-3">
+                        <option value="">Select & Parent Category</option>
+                     </select>
                      <button type="submit" class="btn btn-primary mt-2">Submit</button>
 
                     </form>
@@ -48,15 +56,17 @@
             <tr align="center">
                 <td style="padding-bottom: 20px;">SL.No.</td>
                 <td style="padding-bottom: 20px;">Category Name</td>
+                <td style="padding-bottom: 20px;">Category-Slug</td>
                 <td style="padding-bottom: 20px;">Action</td>
-                {{-- <td style="padding-bottom: 20px;">Category-Slug</td> --}}
+                
             </tr>
 
            @forelse ( $categories as $key => $category)
            
            <tr align="center">
-            <td style="padding-bottom: 20px;">{{++$key}}</td>
+            <td style="padding-bottom: 20px;">{{ $categories->firstItem() + $key }}</td>
             <td style="padding-bottom: 20px;">{{$category->categoryName}}</td>
+            <td> {{ $category->category_slug }} </td>
             <td style="padding-bottom: 20px;">
             <div class="btn-group">
                 <a href="{{route('category.edit',$category->id)}}" class="btn btn-primary btn-sm">Edit</a>
@@ -74,6 +84,8 @@
            @endforelse
 
         </table>
+
+        {{ $categories->links() }}
        </div>
     </div>
 </div>

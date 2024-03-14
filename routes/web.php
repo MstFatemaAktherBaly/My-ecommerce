@@ -21,17 +21,17 @@ Route::get('/', [HomepageController::class, 'homepage'])->name('homepage');
 
 Auth::routes();
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
-Route::get('/dashboard/category', [CategoryController::class, 'category'])->name('category');
+Route::get('/admin/category', [CategoryController::class, 'category'])->name('category')->middleware('auth');
 
-Route::post('/dashboard/category', [CategoryController::class, 'categoryInsert'])->name('category.insert');
+Route::post('/admin/category', [CategoryController::class, 'categoryInsert'])->name('category.insert')->middleware('auth');
 
-Route::get('/dashboard/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
+Route::get('/admin/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit')->middleware('auth');
 
-Route::get('/dashboard/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
+Route::get('/admin/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit')->middleware('auth');
 
-Route::put('/dashboard/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('category.update');
+Route::put('/admin/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('category.update')->middleware('auth');
 
-Route::get('/dashboard/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category.delete');
+Route::get('/admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category.delete')->middleware('auth');
 

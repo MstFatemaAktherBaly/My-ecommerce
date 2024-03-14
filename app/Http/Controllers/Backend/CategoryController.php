@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helpers\SlugGenerator;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -9,16 +10,23 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+
+
+
     function category(){
-        $categories  = Category::latest()->get();
+        $categories  = Category::latest()->paginate(30);
         
       return view('backend.category' , compact('categories'));
     }
 
+    use SlugGenerator;
+
     function categoryInsert(Request $request){
+        
+          $slug = $this->createSlug(Category::class, $request->category);
           $category = new Category();
           $category->categoryName= $request->category;
-          $category->category_slug = Str::slug($request->category_slug);
+          $category->category_slug = $slug;
           $category ->save();
           return back();
     }
@@ -38,7 +46,7 @@ class CategoryController extends Controller
     function categoryUpdate(Request $request,$id){
          $updateCategory = Category::find($id);
          $updateCategory->categoryName = $request->category;
-         $updateCategory->category_slug = Str::slug($request->category_slug);
+         $updateCategory->category_slug = Str::slug($request->category);
          $updateCategory->save();
          return back();
         //  dd($updateCategory);
