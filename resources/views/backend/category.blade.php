@@ -19,7 +19,12 @@
                      <input value="" name="category" id="category" placeholder="Add Category" type="text" class="form-control mt-2">
 
                      <select name="category_id" id="category_id" class="form-control my-3">>
-                        <option value="">Select & Parent Category</option>
+                        <option disabled selected>Select & Parent Category</option>
+
+                     @foreach ( $categories as $category )
+                     <option value="{{ $category->id }}"> {{ $category->categoryName }} </option>
+                     @endforeach
+
                      </select>
 
                      <button type="submit" class="btn btn-primary mt-2">Submit</button>
@@ -61,7 +66,7 @@
                 
             </tr>
 
-           @forelse ( $categories as $key => $category)
+           @forelse ( $perentCategories as $key => $category)
            
            <tr align="center">
             <td style="padding-bottom: 20px;">{{ $categories->firstItem() + $key }}</td>
@@ -75,6 +80,25 @@
             </td>
             
         </tr>
+
+        @if ($category->subCategories)
+
+        @foreach ( $category->subCategories as $subCategory )
+            
+        <tr>
+            <td style="padding-bottom: 20px;">--</td>
+            <td style="padding-bottom: 20px;">{{ $subCategory->categoryName }}</td>
+            <td> {{ $subCategory->category_slug }} </td>
+            <td style="padding-bottom: 20px;">
+           
+            </td>
+        </tr> 
+
+        @endforeach
+        
+        @endif
+       
+
            @empty
 
             <tr>

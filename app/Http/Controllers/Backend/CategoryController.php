@@ -14,11 +14,16 @@ class CategoryController extends Controller
 
 
     function category(){
-        $categories  = Category::latest()->paginate(30);
-        
-      return view('backend.category' , compact('categories'));
-    }
+        $categories  = Category::with('subCategories')->latest()->paginate(30);
 
+        $perentCategories = $categories->where('category_id', null)->flatten();
+
+        // dd($categories);
+        
+         return view('backend.category' , compact('categories', 'perentCategories'));
+      
+    }
+ 
     use SlugGenerator;
 
     function categoryInsert(Request $request){
@@ -26,6 +31,7 @@ class CategoryController extends Controller
           $slug = $this->createSlug(Category::class, $request->category);
           $category = new Category();
           $category->categoryName= $request->category;
+          $category->category_id= $request->category_id;
           $category->category_slug = $slug;
           $category ->save();
           return back();
