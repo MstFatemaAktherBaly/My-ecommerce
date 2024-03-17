@@ -12,7 +12,7 @@
                     <h4 class="text-white text-center">Add New Category</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('category.insert')}}" method="POST">
+                    <form action="{{route('category.insert')}}" method="POST" enctype="multipart/form-data">
 
                      @csrf
                      <label for="category">Category Name</label>
@@ -27,6 +27,12 @@
 
                      </select>
 
+                     <label>Category Icon</label>
+                     <input type="file" name="icon" class="form-control">
+                      @error('icon')
+                          <span class="text-danger">{{$message}}</span>
+                      @enderror
+
                      <button type="submit" class="btn btn-primary mt-2">Submit</button>
 
                     </form>
@@ -40,15 +46,29 @@
                     <h4 class="text-white text-center">Edit Category</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('category.update',$findCategory->id)}}" method="POST">
+                    <form action="{{route('category.update',$findCategory->id)}}" method="POST" enctype="multipart/form-data">
 
                      @csrf
                      @method('put')
                      <label for="category">Category Name</label>
                      <input value="{{$findCategory->categoryName}}" name="category" id="category" placeholder="Edit Category" type="text" class="form-control mt-2">
                      <select name="category_id" id="category_id" class="form-control my-3">
-                        <option value="">Select & Parent Category</option>
+                        @foreach ( $categories as $category )
+
+                        @if ($findCategory->id !=  $category->id)
+
+                        <option {{ $findCategory->category_id == $category->id ? "Selected" : '' }} value="{{ $category->id }}"> {{ $category->categoryName }} </option>
+
+                        @endif
+                        
+                        @endforeach
+                        
                      </select>
+
+                     <label>Category Icon</label>
+                    <input type="file" name="icon" class="form-control">
+                    <input type="hidden" name="old" value="{{ $findCategory->icon }}">
+
                      <button type="submit" class="btn btn-primary mt-2">Submit</button>
 
                     </form>
@@ -70,7 +90,7 @@
            
            <tr align="center">
             <td style="padding-bottom: 20px;">{{ $categories->firstItem() + $key }}</td>
-            <td style="padding-bottom: 20px;">{{$category->categoryName}}</td>
+            <td style="padding-bottom: 20px;" > <img width="80px" src=" {{ asset('storage/'.$category->icon) }} " alt="{{$category->categoryName}}"> {{$category->categoryName}}</td>
             <td> {{ $category->category_slug }} </td>
             <td style="padding-bottom: 20px;">
             <div class="btn-group">
@@ -86,13 +106,18 @@
         @foreach ( $category->subCategories as $subCategory )
             
         <tr>
-            <td style="padding-bottom: 20px;">--</td>
-            <td style="padding-bottom: 20px;">{{ $subCategory->categoryName }}</td>
+            <td style="padding-bottom: 20px;">{{ str('-')->repeat($loop->depth) }}</td>
+            <td style="padding-bottom: 20px;"><img width="80px" src=" {{ $subCategory->icon ? asset('storage/'.$subCategory->icon) : '' }} " alt="{{$subCategory->categoryName}}">{{ $subCategory->categoryName }}</td>
             <td> {{ $subCategory->category_slug }} </td>
             <td style="padding-bottom: 20px;">
-           
+                <div class="btn-group">
+                    <a href="{{route('category.edit',$subCategory->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{route('category.delete',$subCategory->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
             </td>
-        </tr> 
+        </tr>
+        
+       @include('layouts.components.CategoryComponent')
 
         @endforeach
         
