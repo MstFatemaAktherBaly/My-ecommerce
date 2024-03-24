@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\HomepageController;
 
 /*
@@ -35,3 +36,12 @@ Route::put('/admin/category/update/{id}', [CategoryController::class, 'categoryU
 
 Route::get('/admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category.delete')->middleware('auth');
 
+
+
+//Routes for Products (Route Grouping)
+
+Route::prefix('/admin/product')->controller(ProductController::class)->name('admin.product')->group(function(){
+
+   Route::get('/', 'addProduct')->name('add');
+
+});

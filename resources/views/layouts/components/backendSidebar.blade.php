@@ -1,5 +1,5 @@
 <ul>
-    <li class="nav-item">
+    <li class="nav-item {{ request()->routeIs('dashboard') ? "active" : '' }}">
       <a
         href=" {{route('dashboard')}} "
         class="collapsed">
@@ -19,7 +19,7 @@
         </li>
       </ul>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ request()->routeIs('category.*') || request()->routeIs('category') ? "active" : '' }}">
       <a
         href=" {{route('category')}} "
         class="">
@@ -34,6 +34,8 @@
         <span class="text">Manage Category</span>
       </a>
       <ul id="ddmenu_2" class="collapse show dropdown-nav">
+
+       
       
         {{-- <li>
           <a href="{{route('category')}}"> Categories </a>
@@ -43,5 +45,28 @@
         </li> --}}
       </ul>
     </li>
+
+    <li class="nav-item nav-item-has-children {{ request()->routeIs('products.*') ? "active" : '' }}">
+      <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#products" aria-controls="products" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66666 5.41669C1.66666 3.34562 3.34559 1.66669 5.41666 1.66669C7.48772 1.66669 9.16666 3.34562 9.16666 5.41669C9.16666 7.48775 7.48772 9.16669 5.41666 9.16669C3.34559 9.16669 1.66666 7.48775 1.66666 5.41669Z"></path>
+            <path d="M1.66666 14.5834C1.66666 12.5123 3.34559 10.8334 5.41666 10.8334C7.48772 10.8334 9.16666 12.5123 9.16666 14.5834C9.16666 16.6545 7.48772 18.3334 5.41666 18.3334C3.34559 18.3334 1.66666 16.6545 1.66666 14.5834Z"></path>
+            <path d="M10.8333 5.41669C10.8333 3.34562 12.5123 1.66669 14.5833 1.66669C16.6544 1.66669 18.3333 3.34562 18.3333 5.41669C18.3333 7.48775 16.6544 9.16669 14.5833 9.16669C12.5123 9.16669 10.8333 7.48775 10.8333 5.41669Z"></path>
+            <path d="M10.8333 14.5834C10.8333 12.5123 12.5123 10.8334 14.5833 10.8334C16.6544 10.8334 18.3333 12.5123 18.3333 14.5834C18.3333 16.6545 16.6544 18.3334 14.5833 18.3334C12.5123 18.3334 10.8333 16.6545 10.8333 14.5834Z"></path>
+          </svg>
+        </span>
+        <span class="text">Manage Products</span>
+      </a>
+            <ul id="products" class="dropdown-nav collapse " style="">
+              <li>
+                <a href="{{route('admin.productadd')}}"> Add Products </a>
+              </li>
+              <li>
+                <a href="buttons.html"> All Products </a>
+              </li>
+              
+            </ul>
+          </li>
     <span class="divider"><hr /></span>
   </ul>

@@ -69,7 +69,7 @@
                     <input type="file" name="icon" class="form-control">
                     <input type="hidden" name="old" value="{{ $findCategory->icon }}">
 
-                     <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                     <button type="submit" class="btn btn-primary mt-2">Update</button>
 
                     </form>
                 </div>
