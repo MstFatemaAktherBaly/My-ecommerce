@@ -60,7 +60,7 @@
       </a>
             <ul id="products" class="dropdown-nav collapse " style="">
               <li>
-                <a href="{{route('admin.productadd')}}"> Add Products </a>
+                <a href="{{route('admin.products.add')}}"> Add Products </a>
               </li>
               <li>
                 <a href="buttons.html"> All Products </a>

@@ -40,8 +40,9 @@ Route::get('/admin/category/delete/{id}', [CategoryController::class, 'categoryD
 
 //Routes for Products (Route Grouping)
 
-Route::prefix('/admin/product')->controller(ProductController::class)->name('admin.product')->group(function(){
+Route::prefix('/admin/product')->controller(ProductController::class)->name('admin.products.')->middleware('auth')->group(function(){
 
    Route::get('/', 'addProduct')->name('add');
+   Route::POST('/store', 'storeProduct')->name('store');
 
 });
