@@ -62,8 +62,8 @@
                 <div class="select-position">
                     <label>stock</label>
                 <select name="stock" class="form-control">
-                    <option selected value="{{true}}">In Stock</option>
-                    <option value="{{false}}">Out Of Stock</option>
+                    <option selected value="{{ 1 }}">In Stock</option>
+                    <option value="{{ 0 }}">Out Of Stock</option>
                 </select>
                     @error('stock')
                         <span class="text-danger"> {{$message}} </span>
@@ -73,9 +73,9 @@
             </div>
               <div class="col-lg-4"><div class="input-style-2">
                 <label>Brand Name</label>
-                <input name="brand_name" type="text" placeholder="Brand Name">
+                <input name="brand" type="text" placeholder="Brand Name">
                 <span class="icon"><i class="lni lni-cart-full"></i></span>
-                    @error('brand_name')
+                    @error('brand')
                         <span class="text-danger"> {{ $message }} </span>
                     @enderror
               </div></div>
@@ -91,11 +91,11 @@
 
 <div class="d-lg-flex">
     <div class="form-check form-switch toggle-switch">
-        <input class="form-check-input" type="checkbox" name="status" id="status" checked>
+        <input class="form-check-input" type="checkbox" name="status" id="status" checked value="{{ 1 }}">
         <label class="form-check-label me-3" for="status">Status</label>
       </div>
       <div class="form-check form-switch toggle-switch">
-        <input class="form-check-input" type="checkbox" name="featured" id="featured" >
+        <input class="form-check-input" type="checkbox" name="featured" id="featured"  value="{{ 1 }}">
         <label class="form-check-label" for="featured">Featured Products</label>
       </div>
 </div>
@@ -109,12 +109,16 @@
             <div class="card-style">
                 <div class="input-style-1">
                     <label>Featured Image</label>
-                    <input name="featured_img" type="file" >
+                    <input name="feutured_img" type="file" >
                   </div>
 
                   <div class="input-style-1">
                     <label>Gallarey Images</label>
                     <input type="file" multiple name="gallaries[]" >
+
+                    @error('gallaries.*')
+                    <span class="text-danger"> {{ $message }} </span>
+                    @enderror
                   </div>
 
                   <div class="input-style-1">

@@ -20,8 +20,27 @@ trait MediaUploader{
   
             return $mediaPath;
         }
+    
      
     }
+    
+    
 
-    function uploadMultiplMedia(){}
+    function uploadMultiplMedia($files , $dirName, $accessibility = 'public' ) {
+
+        if($files) {
+
+            $mediaPathArray = [];
+        
+            foreach ($files as  $file ) {
+
+               if($file){
+                $fileName = uniqid() . '.' . $file->getClientOriginalextension();
+                $mediaPath = $file->storeAs($dirName, $fileName, $accessibility);
+                $mediaPathArray = $mediaPath ;
+               }
+           }
+           return $mediaPathArray;
+}
+}
 }
